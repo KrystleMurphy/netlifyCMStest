@@ -4,6 +4,35 @@ import viteLogo from '/vite.svg';
 import './App.css';
 import * as contentful from 'contentful';
 
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/admin/*" element={<CMS />} />
+      {/* Other routes */}
+    </Routes>
+  </Router>
+);
+
+const CMS = () => {
+  React.useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/netlify-cms-app@^2.0.0/dist/netlify-cms.js';
+    script.onload = () => {
+      window.CMS_MANUAL_INIT = true;
+      NetlifyCmsApp.init();
+    };
+    document.body.appendChild(script);
+  }, []);
+
+  return <div />;
+};
+
+export default App;
+
+
 function App() {
   const [count, setCount] = useState(0);
   const [entry, setEntry] = useState(null);
