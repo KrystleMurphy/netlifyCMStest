@@ -5,3 +5,18 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
 })
+
+// vite.config.js
+
+import reactRefresh from '@vitejs/plugin-react-refresh';
+
+export default {
+  plugins: [
+    reactRefresh()
+  ],
+  build: {
+    rollupOptions: {
+      external: ['react-router-dom']
+    }
+  }
+}
